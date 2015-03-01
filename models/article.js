@@ -16,7 +16,11 @@ var ArticleSchema = new Schema({
 // read up on methods/statics
 
 ArticleSchema.methods.asJSON = function (cb) {
-	return JSON.stringify(this);
+  return JSON.stringify(this);
+}
+
+ArticleSchema.statics.findByTitle = function (title, cb) {
+  return this.findOne({ title: new RegExp(title, 'i') }, cb);
 }
 
 Article = mongoose.model('Article', ArticleSchema);
