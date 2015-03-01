@@ -18,7 +18,7 @@ var model = require('../models/article');
 router.get('/articles', function(req, res) {
   var article = model.find(function(err, articles) {
     if (err)
-      console.log(err);
+      console.log('Err: ', err);
     else
       res.json(articles);
   })
@@ -31,9 +31,10 @@ router.get('/articles', function(req, res) {
 router.get('/articles/:id', function(req, res) {
   id = req.params.id;
   var article = model.findById(id, function(err, doc) {
-    if (err)
-      console.log(err);
-    else
+    if (err) {
+      // console.log(err);
+      res.send(500, 'id not found');
+  } else
       res.json(doc);
   })
 });
@@ -43,7 +44,20 @@ router.get('/articles/:id', function(req, res) {
  * Create an article
  */
 router.post('/articles', function (req, res) {
-
+    JSON.stringify(req.body, null, 2);
+    var title = req.body.title;
+    var body = req.body.body;
+    // console.log('req', req.body);
+    // console.log('title', title);
+    // console.log('body', body);
+    var article = new model( { 'title': title, 'body': body } );
+    // console.log(article);
+    article.save(function (err) {
+      if (err)
+        res.send(500);
+      else
+        res.send( { 'message': 'Created Successfully', 'article': article } );
+    });
 });
 
 
@@ -52,7 +66,7 @@ router.post('/articles', function (req, res) {
  * Update article
  */
 router.put('/articles/:id', function (req, res) {
-
+  post
 });
 
 
