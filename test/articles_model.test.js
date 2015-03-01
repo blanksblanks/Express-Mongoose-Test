@@ -53,7 +53,7 @@ describe('Articles', function () {
    *
    * http://mongoosejs.com/docs/guide.html#statics
    */
-  it('should have a static method to findByTitle', function(done) {
+  xit('should have a static method to findByTitle', function(done) {
     Article.findByTitle("My Article", function(err, article) {
       article.body.should.equal("Isn't this interesting?");
       done(err);
@@ -67,7 +67,7 @@ describe('Articles', function () {
    *
    * Look at using getters in your Schema http://mongoosejs.com/docs/api.html#schematype_SchemaType-get
    */
-  it('should have a tags field of [] that has a custom getter', function (done) {
+  xit('should have a tags field of [] that has a custom getter', function (done) {
     var article = new Article({ title: "Taggy", body: "So Taggy" });
     article.tags = ["tag1", "tag2", "tag3"];
     article.tags.should.equal("tag1,tag2,tag3");

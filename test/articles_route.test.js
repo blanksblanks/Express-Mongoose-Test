@@ -34,7 +34,7 @@ describe('Articles Route', function () {
      * Extra Credit: Consider using app.param to automatically load
      * in the Article whenever a param :id is detected
      */
-    it('should respond with Content-Type text/json', function (done) {
+    xit('should respond with Content-Type text/json', function (done) {
       agent
       .get('/articles')
       .expect('Content-Type', /json/)
@@ -54,7 +54,7 @@ describe('Articles Route', function () {
      * using the GET /articles
      *
      */
-    it('should return an article if there is one in the DB', function (done) {
+    xit('should return an article if there is one in the DB', function (done) {
       var article = new Article({title: "Test Article", body: "Test Body"});
       article.save(function(err) {
         agent
@@ -74,7 +74,7 @@ describe('Articles Route', function () {
      * using the GET /articles
      *
      */
-    it('should return an article if there is one in the DB', function (done) {
+    xit('should return an article if there is one in the DB', function (done) {
       var article = new Article({title: "Another Test Article", body: "Another Test Body"});
       article.save(function(err) {
         agent
@@ -107,7 +107,7 @@ describe('Articles Route', function () {
      * This is a proper GET /articles/ID request
      * where we search by the ID of the article created above
      */
-    it('should return the JSON of the article based on the id', function (done) {
+    xit('should return the JSON of the article based on the id', function (done) {
       agent
         .get('/articles/' + article._id)
         .expect(200)
@@ -120,7 +120,7 @@ describe('Articles Route', function () {
     /**
      * Here we pass in a bad ID to the URL, we should get a 500 error
      */
-    it('should return a 500 error if the ID is not correct', function (done) {
+    xit('should return a 500 error if the ID is not correct', function (done) {
       agent
         .get('/articles/' + "821083012083012983")
         .expect(500)
@@ -147,7 +147,7 @@ describe('Articles Route', function () {
      *   }
      * }
      */
-    it('should be able to create a new article', function (done) {
+    xit('should be able to create a new article', function (done) {
       agent
         .post('/articles')
         .send({'title': 'Awesome POST created article', 'body': "Can you believe I did this in a test?"})
@@ -160,7 +160,7 @@ describe('Articles Route', function () {
     });
 
     // This one should fail with a 500 because we don't set the article.body
-    it('should be not be able to create a new article without a body', function (done) {
+    xit('should be not be able to create a new article without a body', function (done) {
       agent
         .post('/articles')
         .send({'title': 'Awesome POST created article'})
@@ -169,7 +169,7 @@ describe('Articles Route', function () {
     });
 
     // Check if the articles were actually saved to the database
-    it('should check that the last two posts saved to the DB', function (done) {
+    xit('should check that the last two posts saved to the DB', function (done) {
       Article.findOne({title: 'Awesome POST created article'}, function(err, article) {
         article.body.should.equal("Can you believe I did this in a test?");
         article.should.be.an.instanceOf(Article);
@@ -206,7 +206,7 @@ describe('Articles Route', function () {
      *   }
      * }
      */
-    it('should be able to update an article', function (done) {
+    xit('should be able to update an article', function (done) {
       agent
         .put('/articles/' + article._id)
         .send({'title': 'Awesome PUT updated article'})
