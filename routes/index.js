@@ -16,17 +16,26 @@ var model = require('../models/article');
  * List
  */
 router.get('/articles', function(req, res) {
-
-
+  var article = model.find(function(err, articles) {
+    if (err)
+      console.log(err);
+    else
+      res.json(articles);
+  })
 });
 
 
 /**
  * Show
  */
-
 router.get('/articles/:id', function(req, res) {
-
+  id = req.params.id;
+  var article = model.findById(id, function(err, doc) {
+    if (err)
+      console.log(err);
+    else
+      res.json(doc);
+  })
 });
 
 
