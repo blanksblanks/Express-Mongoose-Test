@@ -9,12 +9,14 @@ var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
   // setup schema here
-  title: String,
-  url_name: String,
-  owner_id:   String,
-  body:   String,
-  date: { type: Date, default: Date.now },
-  status: Number
+  // title: String,
+  // url_name: String,
+  // owner_id:   String,
+  // body:   String,
+  // date: { type: Date, default: Date.now },
+  // status: Number
+  title: { type: String, required: 'Validation failed' },
+  body: { type: String, required: 'Validation failed' }
 });
 
 // read up on methods/statics
