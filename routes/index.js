@@ -29,7 +29,7 @@ router.get('/articles', function(req, res) {
  * Show
  */
 router.get('/articles/:id', function(req, res) {
-  id = req.params.id;
+  var id = req.params.id;
   var article = model.findById(id, function(err, doc) {
     if (err) {
       // console.log(err);
@@ -44,19 +44,19 @@ router.get('/articles/:id', function(req, res) {
  * Create an article
  */
 router.post('/articles', function (req, res) {
-    JSON.stringify(req.body, null, 2);
-    var title = req.body.title;
-    var body = req.body.body;
-    // console.log('req', req.body);
-    // console.log('title', title);
-    // console.log('body', body);
-    var article = new model( { 'title': title, 'body': body } );
-    // console.log(article);
-    article.save(function (err) {
-      if (err)
-        res.send(500);
-      else
-        res.send( { 'message': 'Created Successfully', 'article': article } );
+  JSON.stringify(req.body, null, 2);
+  var title = req.body.title;
+  var body = req.body.body;
+  // console.log('req', req.body);
+  // console.log('title', title);
+  // console.log('body', body);
+  var article = new model( { 'title': title, 'body': body } );
+  // console.log(article);
+  article.save(function (err) {
+    if (err)
+      res.send(500);
+    else
+      res.send( { 'message': 'Created Successfully', 'article': article } );
     });
 });
 
@@ -66,9 +66,23 @@ router.post('/articles', function (req, res) {
  * Update article
  */
 router.put('/articles/:id', function (req, res) {
-  post
-});
+  JSON.stringify(req.body, null, 2);
+  var id = req.params.id;
+  var title = req.body.title;
+  var body = req.body.body;
 
+  var article = model.findById(id, function(err, article) {
+    if (err) {
+      res.send(500);
+    } else {
+      if (title)
+        article.title = title;
+      if (body)
+        article.body = body;
+      res.send( { 'message': 'Updated Successfully', 'article': article } );
+    }
+  });
+});
 
  /**
  * END ROUTES
